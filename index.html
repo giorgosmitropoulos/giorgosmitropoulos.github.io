@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giorgos Mitropoulos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Merriweather', serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+            /* Global line height for readability in the white section */
+            line-height: 1.7; 
+        }
+        header {
+            background: #1a1a1a;
+            color: white;
+            padding: 1rem 2rem; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+            line-height: 1.2; 
+        }
+        .section {
+            margin-bottom: 2.5rem;
+        }
+        
+        /* --- PROFILE PICTURE STYLES --- */
+        .profile-pic-style {
+            width: 115px;
+            height: 115px;
+            /* Update path if needed */
+            background: #ddd url('images/id_photo.jpg') center/cover no-repeat;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 3px solid #333;
+        }
+
+        .header-pic {
+            margin-right: 2rem;
+            display: block; 
+            border-color: #333;
+        }
+
+        .mobile-pic {
+            display: none; 
+            margin: 0 auto 2rem auto; 
+            border-color: #e0e0e0; 
+        }
+        
+        /* --- HEADER TEXT STYLES (Left Side) --- */
+        .header-left-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1; 
+            min-width: 0; 
+            padding-right: 1rem;
+        }
+
+        /* Line 1: Name */
+        .my-name {
+            margin: 0 0 0.3rem 0; 
+            font-size: 2rem;
+            font-weight: 700; 
+            /* Tight spacing for the name */
+            line-height: 1.1; 
+        }
+
+        /* Line 2: Intro */
+        .role-intro {
+            margin: 0;
+            font-size: 1rem;
+            color: #ccc; 
+            font-weight: 300;
+            font-style: italic;
+            /* Tight spacing for the intro */
+            line-height: 1.2; 
+        }
+
+        /* Line 3: Institution */
+        .institution-wrapper {
+            margin: 1.5rem 0 0.1rem 0; 
+            /* Tight spacing for the container */
+            line-height: 1.2; 
+        }
+
+        .inst-link {
+            font-size: 1.5rem; 
+            font-weight: 700;
+            color: #66b3ff; 
+            text-decoration: none;
+            transition: color 0.2s;
+            white-space: nowrap; 
+            /* Tight spacing for the link text */
+            line-height: 1.2; 
+        }
+        .inst-link:hover {
+            color: #99ccff;
+            text-decoration: underline;
+        }
+
+        /* Line 4: Team */
+        .team-name {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 400;
+            /* Tight spacing for the team name */
+            line-height: 1.2; 
+        }
+
+        .team-link {
+            color: white; 
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .team-link:hover {
+            color: white; 
+            text-decoration: underline;
+            opacity: 0.8; 
+        }
+
+        /* --- HEADER RIGHT SIDE STYLES --- */
+        .header-right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; 
+            
+            /* Prevent right side from shrinking */
+            flex-shrink: 0; 
+        }
+        
+        .contact-text {
+            margin: 0 0 0.4rem 0; 
+            font-size: 1rem;
+            /* Tight spacing for contact info */
+            line-height: 1.2; 
+        }
+
+        .header-link {
+            color: #ffffff;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+            white-space: nowrap; 
+        }
+        .header-link:hover {
+            text-decoration: underline;
+            opacity: 1;
+        }
+        .header-link i {
+            color: #66b3ff;
+        }
+
+        /* --- ICON BAR STYLES --- */
+        .icon-bar {
+            margin-top: 0.8rem; 
+            display: flex;
+            justify-content: flex-end; 
+            align-items: center; 
+            gap: 1.2rem;
+        }
+
+        .custom-icon {
+            height: 44px;
+            width: auto;
+            transition: transform 0.2s;
+            display: block;
+        }
+        .custom-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .icon-invert {
+            filter: invert(1) brightness(2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: #777;
+        }
+        
+        a.body-link {
+            color: #003366; 
+            text-decoration: none;
+            font-weight: 700; 
+        }
+        a.body-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- PUBLICATION LIST STYLES (Added back) --- */
+        ul.pub-list {
+            list-style-type: none; /* No bullets */
+            padding: 0;
+            margin: 0;
+        }
+        ul.pub-list li {
+            margin-bottom: 1.5rem; /* Space between papers */
+        }
+
+        /* --- RESPONSIVE / MOBILE STYLES --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column; 
+                text-align: center;
+                gap: 2rem; 
+            }
+
+            .header-pic { display: none; }
+            .mobile-pic { display: block; }
+
+            .header-left-content { 
+                align-items: center; 
+                padding-right: 0; 
+            }
+            .header-right { align-items: center; width: 100%; }
+            .icon-bar { justify-content: center; width: 100%; }
+
+            .my-name { font-size: 1.8rem; }
+            .inst-link { font-size: 1.3rem; }
+            
+            .institution-wrapper { margin-top: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div style="display:flex; align-items:center;">
+            
+            <div class="profile-pic-style header-pic"></div>
+            
+            <div class="header-left-content">
+                <h1 class="my-name">Giorgos Mitropoulos</h1>
+                
+                <p class="role-intro">Doctoral student at</p>
+                
+                <p class="institution-wrapper">
+                    <a href="https://www.lip6.fr/" target="_blank" class="inst-link">LIP6, Sorbonne Université</a>
+                </p>
+                
+                <p class="team-name">
+                    <a href="https://www.lip6.fr/recherche/team.php?acronyme=RO" target="_blank" class="team-link">Operations Research Team</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <h3 style="margin:0 0 0.5rem 0; font-size: 1.2rem;">Contact Me</h3>
+            
+            <p class="contact-text">
+                <a href="mailto:georgios.mitropoulos@lip6.fr" class="header-link">
+                    <i class="fas fa-envelope" style="margin-right: 8px;"></i>georgios.mitropoulos@lip6.fr
+                </a>
+            </p>
+
+            <p class="contact-text">
+                <a href="https://linkedin.com/in/giorgosmitropoulos" target="_blank" class="header-link">
+                    <i class="fab fa-linkedin" style="margin-right: 8px;"></i>giorgosmitropoulos
+                </a>
+            </p>
+
+            <div class="icon-bar">
+                <a href="Giorgos_Mitropoulos_CV.pdf" target="_blank" title="Download CV">
+                    <img src="images/cv.png" alt="CV" class="custom-icon icon-invert">
+                </a>
+                <a href="https://scholar.google.com/citations?user=Rea0TLgAAAAJ&hl=en" target="_blank" title="Google Scholar">
+                    <img src="images/scholar.png" alt="Google Scholar" class="custom-icon" style="border-radius: 10%;">
+                </a>
+                <a href="https://dblp.org/pid/402/4147.html" target="_blank" title="DBLP Bibliography">
+                    <img src="images/dblp.png" alt="DBLP" class="custom-icon">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        
+        <div class="profile-pic-style mobile-pic"></div>
+
+        <div class="section">
+            <h2>Research Interests</h2>
+            <p>
+                My research centers on <em>algorithm design and analysis</em>, with a focus on <em>combinatorial optimization</em>. I am particularly interested in <strong>algorithms with predictions</strong> (learning-augmented algorithms) and <strong>approximation algorithms</strong>,<br>applied to problems such as <span style="font-family:'Lucida Console', monospace">Scheduling</span> and <span style="font-family:'Lucida Console', monospace">Subset</span> <span style="font-family:'Lucida Console', monospace">Sum</span>.
+            </p>
+        </div>
+
+<div class="section">
+            <h2>About Me</h2>
+            <p>
+                I am a PhD student in the <a href="https://www.lip6.fr/recherche/team.php?acronyme=RO&LANG=en" target="_blank" class="body-link">Operations Research</a> team at <a href="https://www.lip6.fr/?LANG=en" target="_blank" class="body-link">LIP6</a>, <strong>Sorbonne Université</strong>. I am fortunate to be supervised by <a href="https://webia.lip6.fr/~bampise/" target="_blank" class="body-link">Evripidis Bampis</a> (SU) and <a href="http://www.softlab.ntua.gr/~fotakis/" target="_blank" class="body-link">Dimitris Fotakis</a> (NTUA & Archimedes RU). My research focuses on greedy learning-augmented algorithms and combinatorial optimization.
+            </p>
+
+            <p>
+                Before that, I was an undergraduate researcher at the <strong>Archimedes Research Unit</strong>, where I had the opportunity to work closely with <a href="https://users.softlab.ntua.gr/~pagour/" target="_blank" class="body-link">Aris Pagourtzis</a>. During that time, I explored exact and approximation algorithms for <span style="font-family:'Lucida Console', monospace">Subset</span> <span style="font-family:'Lucida Console', monospace">Sum</span> problems.
+            </p>
+            <p>
+                In 2025, I completed my <strong>Integrated Master's degree (MEng)</strong> in Applied Mathematical and Physical Sciences at the <strong>National Technical University of Athens</strong> (NTUA), graduating with honors. My thesis, titled <em>Approximation Schemes<br>for Selecting Closest Sum Subsets</em>, was completed under the supervision of <a href="https://users.softlab.ntua.gr/~pagour/" target="_blank" class="body-link">Aris Pagourtzis</a>.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Publications</h2>
+            <ul class="pub-list">
+                <li>
+                    <strong>
+                        <a href="https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ISAAC.2025.44" target="_blank" class="body-link">
+                            Approximation Schemes for k-Subset Sum Ratio and k-Way Number Partitioning Ratio
+                        </a>
+                    </strong><br>
+                    with Sotiris Kanellopoulos, Antonis Antonopoulos, Nikos Leonardos, Aris Pagourtzis,<br>Christos Pergaminelis, Stavros Petsalakis, and Kanellos Tsitouras<br>
+                    In 36th International Symposium on Algorithms and Computation, LIPIcs Vol. 359, pp. 44:1–44:22 <strong>(ISAAC 2025)</strong>.
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Lab Address</h2>
+            <p>
+                Office 440, Corridor 26-00, 4th floor<br>
+                LIP6, Sorbonne Université<br>
+                Boîte courrier 169<br>
+                4, Place Jussieu<br>
+                75005 Paris, France
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        © 2026 Georgios Mitropoulos
+    </footer>
+</body>
+</html>
